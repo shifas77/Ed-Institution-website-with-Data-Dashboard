@@ -1,0 +1,131 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Questionnaire</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .choices label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .submit-button {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Questionnaire</h1>
+
+    <form action="question" method="POST">
+
+      {% csrf_token %}
+
+      <div class="question">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+      </div>
+
+      <div class="question">
+        <label for="age">Age:</label>
+        <input type="text" name="age" id="age">
+      </div>
+
+
+      <div class="question">
+        <h3>Question 1:</h3>
+        <p>What is your favorite color?</p>
+        <div class="choices">
+          <label>
+            <input type="radio" name="color" value="red">
+            Red
+          </label>
+          <label>
+            <input type="radio" name="color" value="blue">
+            Blue
+          </label>
+          <label>
+            <input type="radio" name="color" value="green">
+            Green
+          </label>
+
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>Question 2:</h3>
+        <p>Which animal do you like the most?</p>
+        <div class="choices">
+          <label>
+            <input type="radio" name="animal" value="dog">
+            Dog
+          </label>
+          <label>
+            <input type="radio" name="animal" value="cat">
+            Cat
+          </label>
+          <label>
+            <input type="radio" name="animal" value="bird">
+            Bird
+          </label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>Question 2:</h3>
+        <p>Which activity do you like the most most?</p>
+        <div class="choices">
+          <label>
+            <input type="radio" name="activity" value="singing">
+            singing
+          </label>
+          <label>
+            <input type="radio" name="activity" value="dancing">
+            dancing
+          </label>
+          <label>
+            <input type="radio" name="activity" value="travelling">
+            travelling
+          </label>
+        </div>
+      </div>
+
+      <div class="submit-button">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+
+  </div>
+
+</body>
+</html>
+
+
+{% endblock %}

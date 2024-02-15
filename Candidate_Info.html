@@ -1,0 +1,72 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Candidate Information</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f3f3f3;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      margin-top: 60px;
+      color: #333333;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #e0e0e0;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f9f9f9;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Candidate Information</h1>
+
+  <table>
+    <thead>
+      <tr>
+        {% for column in columns %}
+        <th>{{ column }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        {% for value in row %}
+        <td>{{ value }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
+
+{% endblock %}

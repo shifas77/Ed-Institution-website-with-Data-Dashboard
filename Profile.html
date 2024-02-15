@@ -1,0 +1,132 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile Page</title>
+  <!-- Add your CSS and JS files if needed -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 0;
+      margin: 0;
+    }
+
+    .card {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 100%;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+    .passport-photo {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .field {
+      margin-bottom: 15px;
+    }
+
+    .field-label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .field-value {
+      display: inline-block;
+      margin-left: 10px;
+      color: #555;
+    }
+
+    .expand-button {
+      background: none;
+      border: none;
+      color: blue;
+      cursor: pointer;
+      font-size: 14px;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+      .expand-button:hover {
+        color: #000;
+      }
+
+    .hidden-info {
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    {% if image_exists %}
+    <img src="{% static profile_url %}" alt="Profile Photo" class="passport-photo">
+    {% else %}
+    <form action="/upload-profile-photo/" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="field">
+        <span class="field-label">Profile Photo:</span>
+        <input type="file" name="profile_photo" accept="image/*" />
+      </div>
+      <div class="field">
+        <input type="submit" value="Upload" />
+      </div>
+    </form>
+    {% endif %}
+
+    <!-- Display other profile information -->
+    {% for row in rows_values %}
+    <div class="field">
+      <span class="field-label">ID Number:</span>
+      <span class="field-value">{{ row.0 }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Email ID:</span>
+      <span class="field-value">{{ row.1 }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Username:</span>
+      <span class="field-value">{{ row.2 }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Mobile Number:</span>
+      <span class="field-value">{{ row.3 }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Course:</span>
+      <span class="field-value">{{ row.4 }}</span>
+      <button class="expand-button">More</button>
+      <div class="hidden-info">
+        <!-- Additional information here -->
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+  /* Updated styles for the table, select, and button */
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    color: #333;
+    text-align: center;
+    margin-top: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 32px;
+  }
+
+  table {
+    width: 100%;
+    margin: 40px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  th {
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+    padding: 16px;
+    text-align: left;
+  }
+
+  td {
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+
+  select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    color: #333;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin: 40px auto;
+  }
+
+  .confirm-button button,
+  .next-button button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+    .confirm-button button:hover,
+    .next-button button:hover {
+      background-color: #555;
+    }
+
+  .next-button button {
+    margin-left: 12px;
+  }
+</style>
+
+<h1>STUDENT SHEET</h1>
+
+<table>
+  <thead>
+    <tr>
+      <!-- Render column headers -->
+      {% for column in columns %}
+      <th>{{ column.name }}</th>
+      {% endfor %}
+      <th>Course</th> <!-- Added extra column header -->
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Render table rows -->
+    {% for row in rows %}
+    <tr>
+      {% for value in row %}
+      <td>{{ value }}</td>
+      {% endfor %}
+      <td>
+        <select name="selected_options[]">
+          <!-- Added name attribute -->
+          <!-- Render options -->
+          {% for option in options %}
+          <option value="{{ option }}">{{ option }}</option>
+          {% endfor %}
+        </select>
+      </td> <!-- Added dropdown list for the extra column -->
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="button-container">
+  <div class="confirm-button">
+    <button onclick="confirmSelection()">Confirm</button>
+  </div>
+  <div class="next-button">
+    <button onclick="nextPage()">Next</button>
+  </div>
+</div>
+
+<script>
+  function confirmSelection() {
+    var selectedOptions = []; // Array to store selected option values
+
+    // Iterate over the select elements and retrieve selected values
+    var selectElements = document.getElementsByName('selected_options[]');
+    for (var i = 0; i < selectElements.length; i++) {
+      var selectedOption = selectElements[i].value;
+      selectedOptions.push(selectedOption);
+    }
+
+    // Send the selectedOptions array to the server
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '{% url 'confirm_selection' %}', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+    xhr.send(JSON.stringify(selectedOptions));
+  }
+
+  // Function for handling the "Next" button click
+  function nextPage() {
+    // Perform any desired actions before navigating to the next page
+    // ...
+
+    // Navigate to the next page
+    window.location.href = "{% url 'next_page' %}";
+  }
+</script>
+
+{% endblock %}

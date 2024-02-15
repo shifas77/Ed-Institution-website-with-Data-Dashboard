@@ -1,0 +1,112 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<style>
+  .custom-image {
+    /* Replace with the dimensions of the "Resources" image */
+    width: 266px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .jumbotron {
+    background-image: url("https://plus.unsplash.com/premium_photo-1672977167009-667d1cb28185?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80");
+    background-size: cover;
+    background-position: center;
+    border-radius: 1000px; /* Adjust the value to control the roundness */
+    padding: 40px;
+    color: white;
+    text-align: center;
+  }
+
+    .jumbotron h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .jumbotron p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+  .btn-primary,
+  .btn-default {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+
+    .btn-primary:hover,
+    .btn-default:hover {
+      background-color: #45a049;
+    }
+
+  .row {
+    margin-bottom: 20px;
+  }
+
+  .col-md-4 {
+    text-align: center;
+  }
+</style>
+
+<div class="jumbotron">
+  <h1>Find out how to build a better project portfolio</h1>
+  <p class="lead">The idea is to help students and professionals create better portfolios</p>
+  <p><a href="https://www.djangoproject.com/" class="btn btn-primary btn-large">Portfolio Builder &raquo;</a></p>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <a href="https://pypi.org/">
+      <img src="https://img.freepik.com/free-vector/finance-financial-performance-concept-illustration_53876-40450.jpg?w=740&t=st=1687278597~exp=1687279197~hmac=6754a9b49dd75b7496e42dc5f96582adbcae80a84053bb6f4c97847a13e434d9" class="custom-image">
+    </a>
+    <h2>Finance projects</h2>
+    <p>Get help from professionals within the field of finance.</p>
+    <p><a class="btn btn-default" href="https://pypi.org/">Learn more &raquo;</a></p>
+  </div>
+  <div class="col-md-4">
+    <a href="https://pypi.org/">
+      <img src="https://www.liquidplanner.com/wp-content/uploads/2019/04/6397225.jpg" class="custom-image">
+    </a>
+    <h2>Data Projects</h2>
+    <p>Database of several data and analytics projects.</p>
+    <p><a class="btn btn-default" href="https://pypi.org/">Learn more &raquo;</a></p>
+  </div>
+  <div class="col-md-4">
+    <a href="/profile">
+      <img src="https://thedigitalprojectmanager.b-cdn.net/wp-content/uploads/2021/05/Project-Resource-Management-Plan-featured-image.jpg" alt="Resources Image" class="custom-image">
+    </a>
+    <h2>Project Resources</h2>
+    <p>List of resources that would be helpful in completing a specific project.</p>
+    <p><a class="btn btn-default" href="/profile">Learn more &raquo;</a></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <a href="https://djangobook.com/django-tutorials/">
+      <img src="https://www1.onpassive.com/blog/wp-content/uploads/2022/08/19155712/Data-Science-focuses-on-algorithms.jpg" alt="Data Products Image" class="custom-image">
+    </a>
+    <h2>Data Products</h2>
+    <p>Mostly used data products in the world</p>
+    <p><a class="btn btn-default" href="https://djangobook.com/django-tutorials/">Learn more &raquo;</a></p>
+  </div>
+  <div class="col-md-4">
+    <a href="https://pypi.org/">
+      <img src="https://blog.planview.com/wp-content/uploads/2015/03/3asset.jpg" alt="Other Resources Image" class="custom-image">
+    </a>
+    <h2>Other Resources</h2>
+    <p>Other helpful resources</p>
+    <p><a class="btn btn-default" href="https://pypi.org/">Learn more &raquo;</a></p>
+  </div>
+</div>
+
+{% endblock %}

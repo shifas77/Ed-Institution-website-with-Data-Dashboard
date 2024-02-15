@@ -1,0 +1,79 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aesthetic Page</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+
+      .image-container a {
+        text-decoration: none;
+        color: #333;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+        .image-container a:hover {
+          transform: translateY(-5px);
+        }
+
+      .image-container h2 {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .image-container img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+        .image-container img:hover {
+          transform: scale(1.05);
+        }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <a href="/stud_detail">
+      <img src="https://media.istockphoto.com/id/665039932/vector/student-sitting-at-table.jpg?s=1024x1024&w=is&k=20&c=oVBOg17vcMP8zVJUI1_HG58dA9k7NIyin-umgRh8cbk=" alt="Student Creation">
+      <h2>STUDENT CREATION</h2>
+    </a>
+    <a href="/Display">
+      <img src="https://cdn.icon-icons.com/icons2/1850/PNG/512/statistics_116490.png" alt="Student Statistics">
+      <h2>STUDENT STATISTICS</h2>
+    </a>
+    <a href="/Course">
+      <img src="https://media.istockphoto.com/id/1038617836/vector/education-concept-flat-line-icons-banner.jpg?s=1024x1024&w=is&k=20&c=XBKAAjoJsnEvR1qhZbm78_8FcjUlmUnoa3MZBTcHq50=" alt="Course Selection">
+      <h2>COURSE SELECTION</h2>
+    </a>
+    <a href="candidate-info/">
+      <img src="https://cdnimages.myclassboard.com/Website-2022/Erp/Student-information-system/SISBanner768x728.svg" alt="Candidate Information">
+      <h2>CANDIDATE INFORMATION</h2>
+    </a>
+  </div>
+</body>
+</html>
+{% endblock %}
